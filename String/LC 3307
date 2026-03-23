@@ -1,0 +1,23 @@
+class Solution {
+    public char kthCharacter(long k, int[] operations) {
+        String word = "a";
+        for(int op:operations){
+            StringBuilder res = new StringBuilder();
+            if(op==0){
+                res.append(word);
+            }
+            else{
+               for(int i=0;i<word.length();i++){
+                char ch = word.charAt(i);
+                char nextChar = (char)((ch-'a'+1)%26+'a');
+                res.append(nextChar);
+               }
+            }
+        
+               word=word+res.toString();
+        
+              if(word.length()>=k)break;
+        }
+              return word.charAt((int)(k-1));
+        }
+    }
